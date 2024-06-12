@@ -1,0 +1,37 @@
+//syntax = "proto3";
+//
+//service HelloWorldService {
+//  rpc hello(HelloRequest) returns (HelloResponse) {}
+//}
+//
+//message HelloRequest {
+//  string text = 1;
+//}
+//
+//message HelloResponse {
+//  string text = 1;
+//}
+
+syntax = "proto3";
+
+option java_package = "com.example.grpc";
+option java_outer_classname = "MatrixMultiplicationProto";
+
+message Matrix {
+  repeated double elements = 1;
+  int32 rows = 2;
+  int32 cols = 3;
+}
+
+message MatrixRequest {
+  Matrix matrixA = 1;
+  Matrix matrixB = 2;
+}
+
+message MatrixResponse {
+  Matrix result = 1;
+}
+
+service MatrixMultiplicationService {
+  rpc Multiply (MatrixRequest) returns (MatrixResponse);
+}
